@@ -1,0 +1,158 @@
+:root {
+  color-scheme: light;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+  line-height: 1.5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #f4f6f8;
+  color: #1f2933;
+}
+
+.app {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.app__intro {
+  color: #52606d;
+  margin-top: -0.5rem;
+}
+
+/* Formulário: coluna única, mobile-first */
+.simulation-form {
+  background: #ffffff;
+  border: 1px solid #dbe2e9;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.field + .field {
+  margin-top: 1rem;
+}
+
+.field label {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.field input {
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #cbd2d9;
+  border-radius: 0.375rem;
+  background-color: #ffffff;
+}
+
+.field input:focus-visible {
+  outline: 2px solid #2680c2;
+  outline-offset: 1px;
+}
+
+.field input[aria-invalid='true'] {
+  border-color: #c0392b;
+}
+
+.field-error {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #c0392b;
+}
+
+/* Resultados */
+.results {
+  background: #ffffff;
+  border: 1px solid #dbe2e9;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.results h2 {
+  margin: 0 0 1rem;
+  font-size: 1.125rem;
+}
+
+.results__list {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.results__item {
+  display: flex;
+  flex-direction: column;
+}
+
+.results__item dt {
+  font-size: 0.875rem;
+  color: #52606d;
+}
+
+.results__item dd {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Indicador de limite de comprometimento */
+.limit-indicator {
+  margin: 1.25rem 0 0;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+}
+
+.limit-indicator--within {
+  background-color: #e3f5e8;
+  color: #1d6f42;
+}
+
+.limit-indicator--above {
+  background-color: #fbe9e7;
+  color: #a4262c;
+}
+
+/* Premissas e aviso */
+.assumptions {
+  margin: 1rem 0 0;
+  padding: 0 0 0 1.25rem;
+  font-size: 0.875rem;
+  color: #52606d;
+}
+
+.disclaimer {
+  margin: 1rem 0 0;
+  padding: 0.75rem;
+  background-color: #fdf6e3;
+  border: 1px solid #e4cf8b;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+}
+
+@media (min-width: 30rem) {
+  .app {
+    padding: 2.5rem 1.5rem 3rem;
+  }
+}
+
