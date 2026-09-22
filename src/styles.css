@@ -156,3 +156,26 @@ body {
   }
 }
 
+/* Telas largas: formulário e resultados lado a lado */
+@media (min-width: 48rem) {
+  .app {
+    max-width: 64rem;
+  }
+
+  .main-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  /* Sem resultados, o formulário ocupa toda a largura — sem coluna vazia */
+  .main-layout > :only-child {
+    grid-column: 1 / -1;
+  }
+
+  .results {
+    margin-top: 0;
+  }
+}
+

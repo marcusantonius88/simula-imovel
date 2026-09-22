@@ -39,12 +39,16 @@ export default function App() {
         Estime o valor financiado, as parcelas e o comprometimento da renda de um financiamento
         pelo sistema SAC.
       </p>
-      <SimulationForm
-        values={{ propertyValue, downPayment, monthlyIncome }}
-        onChange={handleChange}
-        errors={validationErrors}
-      />
-      {result ? <ResultPanel result={result} parameters={DEFAULT_SIMULATION_PARAMETERS} /> : null}
+      <div className="main-layout">
+        <SimulationForm
+          values={{ propertyValue, downPayment, monthlyIncome }}
+          onChange={handleChange}
+          errors={validationErrors}
+        />
+        {result ? (
+          <ResultPanel result={result} parameters={DEFAULT_SIMULATION_PARAMETERS} />
+        ) : null}
+      </div>
     </main>
   );
 }
