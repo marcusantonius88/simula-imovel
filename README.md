@@ -1,75 +1,207 @@
-# SimulaImóvel
+# 🏠 SimulaImóvel - Simulador de Financiamento Imobiliário
 
-Simulador de financiamento imobiliário pelo **sistema SAC** (MVP, sem backend). O usuário informa
-três dados — **valor do imóvel**, **valor da entrada** e **renda bruta mensal** — e a aplicação
-apresenta, calculada no navegador:
+O SimulaImóvel é uma aplicação web para estimar parcelas de financiamento imobiliário pelo sistema SAC, com foco em uma experiência simples, rápida e transparente para o usuário.
 
-- **valor financiado** (imóvel − entrada);
-- **primeira parcela estimada**;
-- **última parcela estimada**;
-- **percentual de comprometimento da renda**, com indicação de dentro/acima do limite de referência.
+A ideia central é permitir que uma pessoa informe três dados básicos — valor do imóvel, valor da entrada e renda bruta mensal — e receba, no navegador, uma estimativa de financiamento com indicação de comprometimento da renda.
 
-## Premissas de cálculo
+## 🎯 Problema
 
-- **Taxa mensal = taxa nominal anual ÷ 12.** Esta é a convenção adotada pelo SimulaImóvel neste
-  MVP (premissa do simulador, não uma afirmação sobre o que instituições financeiras praticam).
-- **Parâmetros internos**: taxa nominal anual de **10% a.a.**, prazo de **420 meses** e limite de
-  referência de comprometimento de **30%** da renda. Não são solicitados ao usuário.
-  Para alterá-los, edite **um único arquivo**: [`src/domain/parameters.ts`](src/domain/parameters.ts)
-  (constante `DEFAULT_SIMULATION_PARAMETERS`). Nenhuma fórmula, assinatura ou campo de tela muda.
-- **Arredondamento em centavos**, meio para cima, aplicado a cada saída; o comprometimento é
-  calculado sobre a primeira parcela **já arredondada**, para que a tela seja reproduzível na mão.
-- **Valores sem adicionais**: as parcelas exibidas não incluem seguros (MIP/DFI), taxa de
-  administração, tarifas, atualização monetária (TR) ou outras condições específicas da instituição
-  financeira. O resultado é uma **estimativa**, não uma proposta de crédito.
-- **Sem persistência**: recarregar a página volta os campos ao estado inicial; nada é enviado a
-  servidores. Todo o cálculo acontece no navegador.
+Muitas pessoas desejam entender rapidamente se uma proposta de compra de imóvel parece viável antes de iniciar contato com uma instituição financeira.
 
-## Fórmulas do SAC
+No entanto, a maioria dos simuladores disponíveis exige múltiplos campos, regras complexas ou ainda não deixam claro o impacto real da parcela no orçamento do comprador.
 
-Com valor financiado `P`, prazo `n` (meses) e taxa mensal `i = anual/100/12`:
+O SimulaImóvel busca responder uma pergunta simples:
+
+- Qual seria a parcela inicial estimada de um financiamento no sistema SAC?
+- Qual é o valor financiado?
+- Qual é o comprometimento da renda?
+- A proposta ficaria dentro de um limite de referência?
+
+## 🚀 MVP
+
+O MVP inclui:
+
+- entrada de valor do imóvel;
+- entrada de valor da entrada;
+- entrada de renda bruta mensal;
+- cálculo do valor financiado;
+- cálculo da primeira parcela estimada;
+- cálculo da última parcela estimada;
+- cálculo do percentual de comprometimento da renda;
+- indicação visual de se a parcela está dentro ou acima do limite de referência;
+- renderização 100% no navegador, sem backend.
+
+## 🏗️ Arquitetura
+
+A aplicação foi pensada como um front-end leve e previsível, com lógica de negócio separada em camadas bem definidas.
+
+```text
+src/
+  App.tsx                  # tela principal e estado do formulário
+  domain/
+    parameters.ts          # parâmetros internos do cálculo
+    sac.ts                 # fórmulas SAC e validações
+    format.ts              # formatação de moeda e percentual
+  components/
+    SimulationForm.tsx     # inputs do usuário
+    ResultPanel.tsx        # painel com resultados e indicadores
+```
+
+A arquitetura foi organizada para manter o cálculo financeiro em um único ponto de responsabilidade, com parâmetros centralizados e sem impacto na interface.
+
+## ⚙️ Stack Tecnológica
+
+### Front-end
+
+- React
+- TypeScript
+- Vite
+- Vitest
+- Testing Library
+
+### Cálculo e regras de negócio
+
+- Lógica SAC implementada em TypeScript
+- Parâmetros internos em um único arquivo
+- Formatação de moeda e percentual em pt-BR
+
+## 🧮 Premissas de Cálculo
+
+As premissas do MVP foram definidas para manter a simulação simples, reproduzível e fácil de entender:
+
+- Taxa mensal = taxa nominal anual ÷ 12.
+- Taxa nominal anual interna: 10% a.a.
+- Prazo interno: 420 meses
+- Limite de referência: 30% da renda
+- Arredondamento em centavos, meio para cima, aplicado a cada saída
+- O comprometimento da renda é calculado sobre a primeira parcela já arredondada
+- Não há persistência; tudo acontece no navegador
+- Não incluem seguros, tarifas, TR, taxas administrativas ou outras condições específicas de instituição financeira
+
+### Fórmulas do SAC
+
+Com valor financiado `P`, prazo `n` em meses e taxa mensal `i = anual / 100 / 12`:
 
 | Grandeza | Fórmula |
 | --- | --- |
 | Amortização constante | `A = P / n` |
-| Primeira parcela | `P1 = P × (1/n + i)` |
-| Última parcela | `Pn = (P/n) × (1 + i)` |
+| Primeira parcela | `P1 = P × (1 / n + i)` |
+| Última parcela | `Pn = (P / n) × (1 + i)` |
 | Comprometimento da renda | `C = P1 ÷ renda × 100` |
 
-Exemplo de referência (500.000 / 100.000 / 15.000, parâmetros de fábrica): financiado
-`R$ 400.000,00`, primeira parcela `R$ 4.285,71`, última parcela `R$ 960,32`, comprometimento
-`28,57%` (dentro do limite de 30%).
+Exemplo de referência com os parâmetros da fábrica:
 
-## Como rodar
+- valor do imóvel: 500.000
+- entrada: 100.000
+- renda: 15.000
+- valor financiado: R$ 400.000,00
+- primeira parcela: R$ 4.285,71
+- última parcela: R$ 960,32
+- comprometimento: 28,57% (dentro do limite de 30%)
+
+## 🐳 Ambiente Local
+
+Para rodar o projeto localmente:
 
 ```bash
-npm install       # instala as dependências
-npm run dev       # servidor de desenvolvimento com HMR
-npm run test:run  # suíte de testes (Vitest + Testing Library)
-npm run build     # build estático em dist/
-npm run preview   # serve o build para conferência
-npm run typecheck # checagem de tipos (tsc --noEmit)
+npm install
+npm run dev
 ```
 
-## Estrutura
+Para executar a suíte de testes:
 
-```
-src/
-  App.tsx                  # tela única: estado dos campos + cálculo derivado
-  domain/
-    parameters.ts          # ÚNICO lugar com taxa, prazo e limite (10% a.a. / 420 meses / 30%)
-    sac.ts                 # fórmulas SAC e validação (recebe os parâmetros por argumento)
-    format.ts              # formatação pt-BR (moeda e percentual)
-  components/
-    SimulationForm.tsx     # os três campos de entrada
-    ResultPanel.tsx        # resultados, premissas, indicador de limite e aviso
+```bash
+npm run test:run
 ```
 
-## Fora do escopo deste MVP
+Para build de produção:
 
-- Backend, API, banco de dados, autenticação e persistência.
-- Campos de taxa de juros, prazo ou limite na interface (são parâmetros internos por decisão de
-  produto; expô-los é evolução futura).
-- Tabela de amortização mês a mês, total de juros pagos, sistemas PRICE ou SAC com seguros.
-- Comparação com regras reais de crédito bancário, CET, subsídios ou FGTS.
-- Internacionalização, temas, SSR, PWA, deploy e CI.
+```bash
+npm run build
+```
+
+Para pré-visualizar o build:
+
+```bash
+npm run preview
+```
+
+Para checagem de tipos:
+
+```bash
+npm run typecheck
+```
+
+## 🤖 Desenvolvimento Assistido por IA
+
+Este projeto foi pensado e iterado com apoio de práticas modernas de desenvolvimento assistido por IA, com foco em:
+
+- definição de requisitos e premissas;
+- modelagem de regras financeiras;
+- organização da estrutura do projeto;
+- geração de testes e validações;
+- revisão humana para garantir clareza e consistência.
+
+A intenção foi manter a lógica de negócio bem definida e a documentação alinhada com a implementação.
+
+## 📋 Especificações do Projeto
+
+O projeto também conta com documentação de escopo e mudança em [openspec](./openspec), onde ficam organizadas as especificações e os planos evolutivos.
+
+Estrutura relevante:
+
+- [openspec/config.yaml](./openspec/config.yaml)
+- [openspec/specs/financing-simulation/spec.md](./openspec/specs/financing-simulation/spec.md)
+- [openspec/changes](./openspec/changes)
+
+## 📚 Documentação
+
+Arquivos principais do projeto:
+
+- [README.md](./README.md)
+- [src/domain/parameters.ts](./src/domain/parameters.ts)
+- [src/domain/sac.ts](./src/domain/sac.ts)
+- [src/domain/format.ts](./src/domain/format.ts)
+- [src/components/SimulationForm.tsx](./src/components/SimulationForm.tsx)
+- [src/components/ResultPanel.tsx](./src/components/ResultPanel.tsx)
+
+## 📋 Roadmap Inicial
+
+### Fundação
+
+- MVP funcional de simulação
+- Parâmetros internos centralizados
+- Lógica financeira isolada
+- Testes automatizados
+
+### Experiência
+
+- ajustes de usabilidade e layout
+- melhoria da legibilidade dos resultados
+- refinamento do comportamento mobile
+
+### Evolução futura
+
+- comparação com outros sistemas de amortização
+- exibição de tabela de amortização por mês
+- suporte a cenários com seguros e tarifas
+- personalização de parâmetros pelo usuário
+
+## 🔒 Status
+
+Projeto em desenvolvimento como MVP funcional.
+
+A solução atual atende ao objetivo de estimar a parcela e o comprometimento da renda com uma abordagem simples, sem backend e sem persistência de dados.
+
+## 📄 Licença
+
+MIT
+
+## Fora do Escopo do MVP
+
+- backend, banco de dados, autenticação e persistência;
+- campos de taxa de juros, prazo ou limite na interface;
+- tabela de amortização mês a mês;
+- comparação com regras reais de crédito bancário;
+- CET, FGTS, subsídios ou outros mecanismos específicos de mercado;
+- internacionalização, SSR, PWA e deploy.
