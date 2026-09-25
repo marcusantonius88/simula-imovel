@@ -136,7 +136,7 @@ npm run typecheck
 
 Este projeto foi construído com práticas modernas de desenvolvimento assistido por IA, utilizando uma abordagem estruturada e orientada por especificações.
 
-|  |  |
+| Categoria | Utilização |
 | --- | --- |
 | IDE/Agente | VSCode com Cline |
 | Modelo Principal | DeepSeek v4.1-Flash |
