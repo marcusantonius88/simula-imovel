@@ -134,19 +134,26 @@ npm run typecheck
 
 ## 🤖 Desenvolvimento Assistido por IA
 
-Este projeto foi pensado e iterado com apoio de práticas modernas de desenvolvimento assistido por IA, com foco em:
+Este projeto foi construído com práticas modernas de desenvolvimento assistido por IA, utilizando uma abordagem estruturada e orientada por especificações.
 
-- definição de requisitos e premissas;
-- modelagem de regras financeiras;
-- organização da estrutura do projeto;
-- geração de testes e validações;
-- revisão humana para garantir clareza e consistência.
+|  |  |
+| --- | --- |
+| IDE/Agente | VSCode com Cline |
+| Modelo Principal | DeepSeek v4.1-Flash |
+| Apoio Estratégico | ChatGPT |
+| Metodologia | Spec-Driven Development (SDD) com OpenSpec |
 
-A intenção foi manter a lógica de negócio bem definida e a documentação alinhada com a implementação.
+A implementação foi conduzida a partir de especificações formais, seguindo a metodologia SDD com OpenSpec, em que cada funcionalidade foi planejada, documentada e validada antes da execução do código.
 
-## 📋 Especificações do Projeto
+### 📋 Especificações do Projeto
 
-O projeto também conta com documentação de escopo e mudança em [openspec](./openspec), onde ficam organizadas as especificações e os planos evolutivos.
+As funcionalidades do SimulaImóvel foram organizadas e detalhadas por meio de especificações em [openspec](./openspec), contendo:
+
+- objetivos da funcionalidade;
+- regras de negócio;
+- critérios de aceitação;
+- fluxos de uso;
+- checklist de implementação.
 
 Estrutura relevante:
 
@@ -154,16 +161,22 @@ Estrutura relevante:
 - [openspec/specs/financing-simulation/spec.md](./openspec/specs/financing-simulation/spec.md)
 - [openspec/changes](./openspec/changes)
 
-## 📚 Documentação
+### 📚 Documentação
 
-Arquivos principais do projeto:
+A documentação do projeto foi usada como base para orientar o desenvolvimento, manter consistência e reduzir ambiguidades na implementação.
+
+Arquivos principais:
 
 - [README.md](./README.md)
+- [openspec/config.yaml](./openspec/config.yaml)
+- [openspec/specs/financing-simulation/spec.md](./openspec/specs/financing-simulation/spec.md)
 - [src/domain/parameters.ts](./src/domain/parameters.ts)
 - [src/domain/sac.ts](./src/domain/sac.ts)
 - [src/domain/format.ts](./src/domain/format.ts)
 - [src/components/SimulationForm.tsx](./src/components/SimulationForm.tsx)
 - [src/components/ResultPanel.tsx](./src/components/ResultPanel.tsx)
+
+A IA foi utilizada para apoiar a definição de requisitos, a organização da estrutura do código, o refinamento das regras financeiras, a criação de testes e a revisão da implementação, sempre com validação humana no processo.
 
 ## 📋 Roadmap Inicial
 
