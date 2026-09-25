@@ -1,10 +1,9 @@
 # 🏠 SimulaImóvel - Simulador de Financiamento Imobiliário
 
-[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-7-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
-[![Vitest](https://img.shields.io/badge/Vitest-5-6E9F18?logo=vitest&logoColor=white)](https://vitest.dev/)
-[![Sistema SAC](https://img.shields.io/badge/Financiamento-Sistema%20SAC-2E8B57)](./src/domain/sac.ts)
+![Frontend: React/TypeScript/Vite](https://img.shields.io/badge/Frontend-React%20%2F%20TypeScript%20%2F%20Vite-3178C6)
+![SDD: OpenSpec](https://img.shields.io/badge/SDD-OpenSpec-6E9F18)
+![Build: NPM](https://img.shields.io/badge/Build-NPM-CB3837?logo=npm&logoColor=white)
+![IDE: VSCode com Cline](https://img.shields.io/badge/IDE-VSCode%20com%20Cline-007ACC)
 
 O SimulaImóvel é uma aplicação web para estimar parcelas de financiamento imobiliário pelo sistema SAC, com foco em uma experiência simples, rápida e transparente para o usuário.
 
