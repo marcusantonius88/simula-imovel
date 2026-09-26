@@ -152,7 +152,13 @@ A implementação foi conduzida a partir de especificações formais, seguindo a
 
 ### 📋 Especificações do Projeto
 
-As funcionalidades do SimulaImóvel foram organizadas e detalhadas por meio de especificações em [openspec](./openspec), contendo:
+As funcionalidades do SimulaImóvel foram planejadas e detalhadas utilizando o OpenSpec, seguindo o schema `spec-driven`. O processo começa pela definição do objetivo e do escopo da funcionalidade, antes da implementação, para alinhar o problema que será resolvido, as regras de negócio e o comportamento esperado.
+
+Cada requisito é descrito de forma observável e acompanhado por cenários no formato `WHEN`/`THEN`, o que transforma as decisões de produto em critérios claros de validação. No caso do SimulaImóvel, esse processo documenta as entradas da simulação, os parâmetros internos, as fórmulas SAC, as validações, a apresentação dos resultados, a acessibilidade e o comportamento responsivo.
+
+As mudanças evolutivas são organizadas em diretórios próprios dentro de `openspec/changes`, com documentos de proposta, design, especificação e tarefas. Esses artefatos registram o motivo da mudança, o que será alterado, seus impactos na aplicação e o checklist necessário para sua implementação.
+
+Esse fluxo permite que a implementação seja conduzida a partir de uma fonte de verdade versionada, mantendo código, testes e documentação alinhados:
 
 - objetivos da funcionalidade;
 - regras de negócio;
@@ -160,7 +166,7 @@ As funcionalidades do SimulaImóvel foram organizadas e detalhadas por meio de e
 - fluxos de uso;
 - checklist de implementação.
 
-Estrutura relevante:
+Documentos utilizados no projeto:
 
 - [openspec/config.yaml](./openspec/config.yaml)
 - [openspec/specs/financing-simulation/spec.md](./openspec/specs/financing-simulation/spec.md)
