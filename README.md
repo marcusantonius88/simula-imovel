@@ -159,15 +159,13 @@ Cada requisito é descrito de forma observável e acompanhado por cenários no f
 As mudanças evolutivas são organizadas em diretórios próprios dentro de `openspec/changes`, com documentos de proposta, design, especificação e tarefas. Esses artefatos registram o motivo da mudança, o que será alterado, seus impactos na aplicação e o checklist necessário para sua implementação.
 
 Esse fluxo permite que a implementação seja conduzida a partir de uma fonte de verdade versionada, mantendo código, testes e documentação alinhados:
-
-- objetivos da funcionalidade;
-- regras de negócio;
-- critérios de aceitação;
-- fluxos de uso;
-- checklist de implementação.
+- Objetivos da funcionalidade;
+- Regras de negócio;
+- Critérios de aceitação;
+- Fluxos de uso;
+- Checklist de implementação.
 
 Documentos utilizados no projeto:
-
 - [openspec/config.yaml](./openspec/config.yaml)
 - [openspec/specs/financing-simulation/spec.md](./openspec/specs/financing-simulation/spec.md)
 - [openspec/changes](./openspec/changes)
@@ -177,7 +175,6 @@ Documentos utilizados no projeto:
 A documentação do projeto foi usada como base para orientar o desenvolvimento, manter consistência e reduzir ambiguidades na implementação.
 
 Arquivos principais:
-
 - [README.md](./README.md)
 - [openspec/config.yaml](./openspec/config.yaml)
 - [openspec/specs/financing-simulation/spec.md](./openspec/specs/financing-simulation/spec.md)
@@ -220,12 +217,3 @@ A solução atual atende ao objetivo de estimar a parcela e o comprometimento da
 ## 📄 Licença
 
 MIT
-
-## Fora do Escopo do MVP
-
-- backend, banco de dados, autenticação e persistência;
-- campos de taxa de juros, prazo ou limite na interface;
-- tabela de amortização mês a mês;
-- comparação com regras reais de crédito bancário;
-- CET, FGTS, subsídios ou outros mecanismos específicos de mercado;
-- internacionalização, SSR, PWA e deploy.
