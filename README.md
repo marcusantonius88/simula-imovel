@@ -210,7 +210,7 @@ A IA foi utilizada para apoiar a definição de requisitos, a organização da e
 
 ## 🔒 Status
 
-Projeto em desenvolvimento como MVP funcional.
+Projeto em desenvolvimento como MVP.
 
 A solução atual atende ao objetivo de estimar a parcela e o comprometimento da renda com uma abordagem simples, sem backend e sem persistência de dados.
 
