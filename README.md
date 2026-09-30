@@ -7,15 +7,15 @@
 
 O SimulaImóvel é uma aplicação web para estimar parcelas de financiamento imobiliário pelo sistema SAC, com foco em uma experiência simples, rápida e transparente para o usuário.
 
-A ideia central é permitir que uma pessoa informe três dados básicos — valor do imóvel, valor da entrada e renda bruta mensal — e receba, no navegador, uma estimativa de financiamento com indicação de comprometimento da renda.
+A ideia central é permitir que uma pessoa informe três dados básicos — valor do imóvel, valor da entrada e renda bruta mensal — e receba, no navegador, uma estimativa de financiamento com indicação do comprometimento da renda.
 
 ## 🎯 Problema
 
 Muitas pessoas desejam entender rapidamente se uma proposta de compra de imóvel parece viável antes de iniciar contato com uma instituição financeira.
 
-No entanto, a maioria dos simuladores disponíveis exige múltiplos campos, regras complexas ou ainda não deixam claro o impacto real da parcela no orçamento do comprador.
+No entanto, a maioria dos simuladores disponíveis exige vários campos, regras complexas ou ainda não deixa claro o impacto real da parcela no orçamento do comprador.
 
-O SimulaImóvel busca responder uma pergunta simples:
+O SimulaImóvel busca responder a uma pergunta simples:
 
 - Qual seria a parcela inicial estimada de um financiamento no sistema SAC?
 - Qual é o valor financiado?
@@ -26,9 +26,9 @@ O SimulaImóvel busca responder uma pergunta simples:
 
 O MVP inclui:
 
-- entrada de valor do imóvel;
-- entrada de valor da entrada;
-- entrada de renda bruta mensal;
+- entrada do valor do imóvel;
+- entrada do valor da entrada;
+- entrada da renda bruta mensal;
 - cálculo do valor financiado;
 - cálculo da primeira parcela estimada;
 - cálculo da última parcela estimada;
@@ -66,22 +66,22 @@ A arquitetura foi organizada para manter o cálculo financeiro em um único pont
 
 ### Cálculo e regras de negócio
 
-- Lógica SAC implementada em TypeScript
-- Parâmetros internos em um único arquivo
-- Formatação de moeda e percentual em pt-BR
+- lógica SAC implementada em TypeScript;
+- parâmetros internos em um único arquivo;
+- formatação de moeda e percentual em pt-BR.
 
 ## 🧮 Premissas de Cálculo
 
 As premissas do MVP foram definidas para manter a simulação simples, reproduzível e fácil de entender:
 
 - Taxa mensal = taxa nominal anual ÷ 12.
-- Taxa nominal anual interna: 10% a.a.
-- Prazo interno: 420 meses
-- Limite de referência: 30% da renda
-- Arredondamento em centavos, meio para cima, aplicado a cada saída
-- O comprometimento da renda é calculado sobre a primeira parcela já arredondada
-- Não há persistência; tudo acontece no navegador
-- Não incluem seguros, tarifas, TR, taxas administrativas ou outras condições específicas de instituição financeira
+- Taxa nominal anual interna: 10% ao ano.
+- Prazo interno: 420 meses.
+- Limite de referência: 30% da renda.
+- Arredondamento em centavos, com regra de meio para cima, aplicado a cada saída.
+- O comprometimento da renda é calculado sobre a primeira parcela já arredondada.
+- Não há persistência; tudo acontece no navegador.
+- Não incluem seguros, tarifas, TR, taxas administrativas ou outras condições específicas de uma instituição financeira.
 
 ### Fórmulas do SAC
 
@@ -119,7 +119,7 @@ Para executar a suíte de testes:
 npm run test:run
 ```
 
-Para build de produção:
+Para fazer o build de produção:
 
 ```bash
 npm run build
@@ -131,7 +131,7 @@ Para pré-visualizar o build:
 npm run preview
 ```
 
-Para checagem de tipos:
+Para verificação de tipos:
 
 ```bash
 npm run typecheck
@@ -144,26 +144,26 @@ Este projeto foi construído com práticas modernas de desenvolvimento assistido
 | Categoria | Utilização |
 | --- | --- |
 | IDE/Agente | VSCode com Cline |
-| Modelo Principal | DeepSeek v4.1-Flash |
-| Apoio Estratégico | ChatGPT |
+| Modelo principal | DeepSeek v4.1-Flash |
+| Apoio estratégico | ChatGPT |
 | Metodologia | Spec-Driven Development (SDD) com OpenSpec |
 
 A implementação foi conduzida a partir de especificações formais, seguindo a metodologia SDD com OpenSpec, em que cada funcionalidade foi planejada, documentada e validada antes da execução do código.
 
 ### 📋 Especificações do Projeto
 
-As funcionalidades do SimulaImóvel foram planejadas e detalhadas utilizando o OpenSpec, seguindo o schema `spec-driven`. O processo começa pela definição do objetivo e do escopo da funcionalidade, antes da implementação, para alinhar o problema que será resolvido, as regras de negócio e o comportamento esperado.
+As funcionalidades do SimulaImóvel foram planejadas e detalhadas utilizando o OpenSpec, seguindo o schema `spec-driven`. O processo começa pela definição do objetivo e do escopo da funcionalidade, antes da implementação, para alinhar o problema a ser resolvido, as regras de negócio e o comportamento esperado.
 
 Cada requisito é descrito de forma observável e acompanhado por cenários no formato `WHEN`/`THEN`, o que transforma as decisões de produto em critérios claros de validação. No caso do SimulaImóvel, esse processo documenta as entradas da simulação, os parâmetros internos, as fórmulas SAC, as validações, a apresentação dos resultados, a acessibilidade e o comportamento responsivo.
 
-As mudanças evolutivas são organizadas em diretórios próprios dentro de `openspec/changes`, com documentos de proposta, design, especificação e tarefas. Esses artefatos registram o motivo da mudança, o que será alterado, seus impactos na aplicação e o checklist necessário para sua implementação.
+As mudanças evolutivas são organizadas em diretórios próprios dentro de `openspec/changes`, com documentos de proposta, design, especificação e tarefas. Esses artefatos registram o motivo da mudança, o que será alterado, seus impactos na aplicação e o checklist necessário para a implementação.
 
 Esse fluxo permite que a implementação seja conduzida a partir de uma fonte de verdade versionada, mantendo código, testes e documentação alinhados:
-- Objetivos da funcionalidade;
-- Regras de negócio;
-- Critérios de aceitação;
-- Fluxos de uso;
-- Checklist de implementação.
+- objetivos da funcionalidade;
+- regras de negócio;
+- critérios de aceitação;
+- fluxos de uso;
+- checklist de implementação.
 
 Documentos utilizados no projeto:
 - [openspec/config.yaml](./openspec/config.yaml)
@@ -190,23 +190,23 @@ A IA foi utilizada para apoiar a definição de requisitos, a organização da e
 
 ### Fundação
 
-- MVP funcional de simulação
-- Parâmetros internos centralizados
-- Lógica financeira isolada
-- Testes automatizados
+- MVP funcional de simulação;
+- parâmetros internos centralizados;
+- lógica financeira isolada;
+- testes automatizados.
 
 ### Experiência
 
-- ajustes de usabilidade e layout
-- melhoria da legibilidade dos resultados
-- refinamento do comportamento mobile
+- ajustes de usabilidade e layout;
+- melhoria da legibilidade dos resultados;
+- refinamento do comportamento mobile.
 
 ### Evolução futura
 
-- comparação com outros sistemas de amortização
-- exibição de tabela de amortização por mês
-- suporte a cenários com seguros e tarifas
-- personalização de parâmetros pelo usuário
+- comparação com outros sistemas de amortização;
+- exibição de tabela de amortização por mês;
+- suporte a cenários com seguros e tarifas;
+- personalização de parâmetros pelo usuário.
 
 ## 🔒 Status
 
